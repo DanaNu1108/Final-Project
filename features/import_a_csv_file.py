@@ -10,7 +10,7 @@ def import_file():
     fTyp = [("", "*.csv")]
     iDir = "./"
     file_path = filedialog.askopenfilename(filetypes=fTyp, initialdir=iDir)
-    
+
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
@@ -18,9 +18,6 @@ def import_file():
         print("An error occured. Please try again.")
         df = None
     else:
-        print("Successfully imported.")
+        print("A csv file is imported successfully.")
     finally:
         return df
-
-
-
