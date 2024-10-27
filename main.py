@@ -8,7 +8,6 @@ from App_Feature import App_Feature
 def main():
     # Initialize data frame
     current_data_frame: pd.DataFrame = None
-    print(App_Feature.get_by_code("1"))
 
     while True:
         display_menu()
