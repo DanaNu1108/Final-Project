@@ -1,23 +1,31 @@
 import tkinter as tk
 from tkinter import filedialog
 import pandas as pd
+from constants import common_error_type_to_error_message
 
 
-def import_file():
+def import_file(df: pd.DataFrame) -> pd.DataFrame:
     root = tk.Tk()
     root.withdraw()
 
     fTyp = [("", "*.csv")]
-    iDir = "./"
+    iDir = "./csv_files"
     file_path = filedialog.askopenfilename(filetypes=fTyp, initialdir=iDir)
+
+    # No file has been selected(= Cancel button has been pressed)
+    if file_path == "":
+        print(common_error_type_to_error_message["NO_FILE_SELECTED"])
+        # Return inputed Dataframe as it is
+        return df
 
     try:
         df = pd.read_csv(file_path)
     except Exception as e:
         print("The exception: {}".format(e))
-        print("An error occured. Please try again.")
+        print(common_error_type_to_error_message["ERROR_OCCURRED"])
+        # Replace the dataframe with None in order to encourage the user to import a proper file
         df = None
     else:
-        print("A csv file is imported successfully.")
+        print("A csv file has been imported successfully.")
     finally:
         return df

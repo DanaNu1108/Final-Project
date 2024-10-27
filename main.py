@@ -1,7 +1,8 @@
-import constants as cnst
 import pandas as pd
-import features.import_a_csv_file as import_a_csv_file
-import features.view_all_transactions as view_all_transactions
+from features.import_a_csv_file import import_file
+from features.view_all_transactions import view_all_transactions
+from features.save_transactions_to_csv import save_to_csv
+from constants import common_error_type_to_error_message
 from App_Feature import App_Feature
 
 
@@ -17,11 +18,11 @@ def main():
         # Call the selected feature function
         match selected_feature:
             case App_Feature.IMPORT_A_CSV_FILE:
-                current_data_frame = import_a_csv_file.import_file()
+                current_data_frame = import_file(current_data_frame)
                 print("")
 
             case App_Feature.VIEW_ALL_TRANSACTIONS:
-                view_all_transactions.view_all_transactions(current_data_frame)
+                view_all_transactions(current_data_frame)
                 print("")
 
             case App_Feature.VIEW_TRANSACTIONS_BY_DATE_RANGE:
@@ -49,10 +50,12 @@ def main():
                 print("not implemented yet")
 
             case App_Feature.SAVE_TRANSACTIONS_TO_CSV:
-                print("not implemented yet")
+                save_to_csv(current_data_frame)
+                print("")
 
             case App_Feature.EXIT:
                 print("Exiting the Personal Finance Tracker. Goodbye!")
+                print("")
                 break
 
 
@@ -72,14 +75,14 @@ def validated_user_input():
 
         # Empty or null check
         if user_input == "" or user_input is None:
-            print(cnst.common_error_type_to_error_message["EMPTY_OR_NULL_ERROR"])
+            print(common_error_type_to_error_message["VALUE_IS_EMPTY_OR_NULL"])
             continue
 
         # Check if the value is defined
         if App_Feature.get_by_code(user_input) is None:
             print(f"Please choose an option {available_options_str}.")
             continue
-        
+
         print("")
         return user_input
 
