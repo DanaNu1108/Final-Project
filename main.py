@@ -56,9 +56,6 @@ def main():
                 print("Exiting the Personal Finance Tracker. Goodbye!")
                 break
 
-            case _:
-                print("not implemented yet")
-
 
 def display_menu():
     print("=== Personal Finance Tracker ===")
