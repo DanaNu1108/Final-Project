@@ -26,6 +26,7 @@ def import_file(df: pd.DataFrame) -> pd.DataFrame:
         # Replace the dataframe with None in order to encourage the user to import a proper file
         df = None
     else:
-        print("A csv file has been imported successfully.")
+        file_name = file_path[file_path.rfind("/") + 1 :]
+        print(f"'{file_name}' has been imported successfully.")
     finally:
         return df
