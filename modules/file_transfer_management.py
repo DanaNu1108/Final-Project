@@ -5,12 +5,13 @@ from constants import common_error_type_to_error_message
 
 
 def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
-    root = tk.Tk()
-    root.withdraw()
+    # root = tk.Tk()
+    # root.withdraw()
 
-    fTyp = [("", "*.csv")]
-    iDir = "./csv_files"
-    file_path = filedialog.askopenfilename(filetypes=fTyp, initialdir=iDir)
+    # fTyp = [("", "*.csv")]
+    # iDir = "./csv_files"
+    # file_path = filedialog.askopenfilename(filetypes=fTyp, initialdir=iDir)
+    file_path = "./csv_files/sampledata.csv"
 
     # No file has been selected(= Cancel button has been pressed)
     if file_path == "":
