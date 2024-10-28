@@ -1,7 +1,6 @@
 import pandas as pd
-from features.import_a_csv_file import import_file
-from features.view_all_transactions import view_all_transactions
-from features.save_transactions_to_csv import save_to_csv
+import modules.data_management as data_management
+import modules.file_transfer_management as file_transfer_management
 from constants import common_error_type_to_error_message
 from constants import AppFeature
 
@@ -18,11 +17,11 @@ def main():
         # Call the selected feature function
         match selected_feature:
             case AppFeature.IMPORT_A_CSV_FILE:
-                current_data_frame = import_file(current_data_frame)
+                current_data_frame = file_transfer_management.import_a_csv_file(current_data_frame)
                 print("")
 
             case AppFeature.VIEW_ALL_TRANSACTIONS:
-                view_all_transactions(current_data_frame)
+                data_management.view_all_transactions(current_data_frame)
                 print("")
 
             case AppFeature.VIEW_TRANSACTIONS_BY_DATE_RANGE:
@@ -50,7 +49,7 @@ def main():
                 print("not implemented yet")
 
             case AppFeature.SAVE_TRANSACTIONS_TO_CSV:
-                save_to_csv(current_data_frame)
+                file_transfer_management.save_transactions_to_csv(current_data_frame)
                 print("")
 
             case AppFeature.EXIT:
