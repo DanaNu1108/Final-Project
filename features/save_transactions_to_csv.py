@@ -12,7 +12,7 @@ def save_to_csv(df: pd.DataFrame) -> None:
     targetDir = "./csv_files"
 
     try:
-        df.to_csv(targetDir + "/" + input_file_name)
+        df.to_csv(path_or_buf=targetDir + "/" + input_file_name, index=False)
     except Exception as e:
         print("The exception: {}".format(e))
         print(common_error_type_to_error_message["ERROR_OCCURRED"])
