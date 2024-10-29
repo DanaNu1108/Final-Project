@@ -1,33 +1,42 @@
-import tkinter as tk
-from tkinter import filedialog
+import glob
 import pandas as pd
 from constants import common_error_type_to_error_message
 
+targetDir = "./csv_files"
+
 
 def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
-    # root = tk.Tk()
-    # root.withdraw()
 
-    # fTyp = [("", "*.csv")]
-    # iDir = "./csv_files"
-    # file_path = filedialog.askopenfilename(filetypes=fTyp, initialdir=iDir)
-    file_path = "./csv_files/sampledata.csv"
+    # Find all the csv file paths in the "csv_files" directory.
+    file_paths = glob.glob(targetDir + "/*.csv")
 
-    # No file has been selected(= Cancel button has been pressed)
-    if file_path == "":
-        print(common_error_type_to_error_message["NO_FILE_SELECTED"])
+    # There is no file to import in the directory
+    if len(file_paths) == 0:
+        print(common_error_type_to_error_message["NO_FILE_EXISTS"])
         # Return inputed Dataframe as it is
         return df
 
+    # Print all file names
+    print("Select the file number to import.")
+    for i in range(len(file_paths)):
+        file_path = file_paths[i]
+        file_name = file_path[file_path.rfind("/") + 1 :]
+        print(f"{i}. {file_name}")
+
+    # Receive a user input and specify the file based on it.
+    user_input_number = validated_file_number(file_paths)
+    selected_file_path = file_paths[user_input_number]
+
+    # Import the selected file
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(selected_file_path)
     except Exception as e:
         print("The exception: {}".format(e))
         print(common_error_type_to_error_message["ERROR_OCCURRED"])
         # Replace the dataframe with None in order to encourage the user to import a proper file
         df = None
     else:
-        file_name = file_path[file_path.rfind("/") + 1 :]
+        file_name = selected_file_path[selected_file_path.rfind("/") + 1 :]
         print(f"'{file_name}' has been imported successfully.")
     finally:
         return df
@@ -39,8 +48,8 @@ def save_transactions_to_csv(df: pd.DataFrame) -> None:
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
 
+    # Receive a user input
     input_file_name = validated_file_name()
-    targetDir = "./csv_files"
 
     try:
         df.to_csv(path_or_buf=targetDir + "/" + input_file_name, index=False)
@@ -65,5 +74,25 @@ def validated_file_name() -> str:
         if input_file_name[-4:] != ".csv":
             print(common_error_type_to_error_message["INVALID_FILE_EXTENSION"])
             continue
-
+        
+        print("")
         return input_file_name
+
+
+def validated_file_number(file_paths: list) -> int:
+    while True:
+        user_input = input("Enter the file number: ")
+
+        if not user_input.isnumeric():
+            print(common_error_type_to_error_message["INVALID_NUMBER"])
+            continue
+
+        user_input_number = int(user_input)
+
+        if not user_input_number in range(len(file_paths)):
+            available_numbers_str = f"0 - {len(file_paths)-1}"  # Ex. "0 - 11"
+            print(f"Please enter a number {available_numbers_str}.")
+            continue
+        
+        print("")
+        return user_input_number
