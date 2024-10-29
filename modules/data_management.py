@@ -16,15 +16,9 @@ def view_all_transactions(df: pd.DataFrame) -> None:
 #2. View Transactions by Date Range
 from datetime import datetime
 
-transactions_days = pd.DataFrame({
-    'Date': ['2024-10-02', '2024-10-02', '2024-10-03', '2024-09-30'],
-    'Category': ['Rent', 'Utilities', 'Food', 'Groceries'],
-    'Description': ['Monthly Rent', 'Electricity Bill', 'Dinner', 'Weekly Groceries'],
-    'Amount': [1200.0, 60.0, 30.0, 100.0]
-})
-transactions_days['Date'] = pd.to_datetime(transactions_days['Date'])
-
-def view_transactions_by_date():
+def view_transactions_by_date(df):
+    transactions_days = df
+    transactions_days['Date'] = pd.to_datetime(transactions_days['Date'])
 
     start_date_begin = input("Enter the start date (YYYY-MM-DD): ")
     end_date_end = input("Enter the end date (YYYY-MM-DD): ")
@@ -43,7 +37,6 @@ def view_transactions_by_date():
     else:
         print("No transactions found in this date range.")
         
-view_transactions_by_date()
 
 # add_a_transaction
 

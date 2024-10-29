@@ -25,7 +25,8 @@ def main():
                 print("")
 
             case AppFeature.VIEW_TRANSACTIONS_BY_DATE_RANGE:
-                print("not implemented yet")
+                data_management.view_transactions_by_date(current_data_frame)
+                print("")
 
             case AppFeature.ADD_A_TRANSACTION:
                 print("not implemented yet")
