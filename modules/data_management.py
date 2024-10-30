@@ -62,11 +62,72 @@ def add_transaction(df):
         print("Error: Invalid date or amount format. Please try again.")
 
 
-# Sample usage
+
 print(add_transaction)
 
 # edit_a_transaction
+def edit_transaction(df):
+    edit_transactions = df
+    edit_transactions['Date'] = pd.to_datetime(edit_transactions['Date'])
+    try:
+        index = int(input("Enter the index of the transaction to edit: "))
+
+        # Check if the index is valid
+        if index not in edit_transactions.index:
+            print("Invalid index.")
+            return
+
+        # Display current transaction details
+        print("Current Transaction Details:")
+        print(f"Date: {edit_transactions.at[index, 'Date']}")
+        print(f"Category: {edit_transactions.at[index, 'Category']}")
+        print(f"Description: {edit_transactions.at[index, 'Description']}")
+        print(f"Amount: {edit_transactions.at[index, 'Amount']}")
+
+        # Prompt for new values or press Enter to keep current
+        new_date = input("Enter new date (YYYY-MM-DD) or press Enter to keep current: ")
+        new_category = input("Enter new category or press Enter to keep current: ")
+        new_description = input("Enter new description or press Enter to keep current: ")
+        new_amount = input("Enter new amount or press Enter to keep current: ")
+
+        # Update transaction if a new value is provided
+        if new_date:
+            edit_transactions.at[index, 'Date'] = pd.to_datetime(new_date).date()
+        if new_category:
+            edit_transactions.at[index, 'Category'] = new_category
+        if new_description:
+            edit_transactions.at[index, 'Description'] = new_description
+        if new_amount:
+            edit_transactions.at[index, 'Amount'] = float(new_amount)
+
+        print("Transaction updated successfully!")
+    except ValueError:
+        print("Error: Invalid input. Please enter a valid index and data format.")
+
+
+print(edit_transaction)
 
 # delete_a_transaction
+def delete_transaction(df):
+    delete_transactions = df
+    delete_transactions['Date'] = pd.to_datetime(delete_transactions['Date'])
+    try:
+        # Prompt for the index of the transaction to delete
+        index = int(input("Enter the index of the transaction to delete: "))
 
+        # Check if the index is valid
+        if index not in delete_transactions.index:
+            print("Invalid index.")
+            return
+
+
+        transactions = delete_transactions.drop(index).reset_index(drop=True)
+
+        print("Transaction deleted successfully!")
+    except ValueError:
+        print("Error: Invalid input. Please enter a valid index.")
+
+
+
+print(delete_transaction)
 
