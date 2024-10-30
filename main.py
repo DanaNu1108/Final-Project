@@ -34,13 +34,16 @@ def main():
                 print("")
 
             case AppFeature.ADD_A_TRANSACTION:
-                print("not implemented yet")
-
+                current_data_frame = data_management.add_transaction(current_data_frame)
+                print("")
+                
             case AppFeature.EDIT_A_TRANSACTION:
-                print("not implemented yet")
+                current_data_frame = data_management.edit_transaction(current_data_frame)
+                print("")
 
             case AppFeature.DELETE_A_TRANSACTION:
-                print("not implemented yet")
+                current_data_frame = data_management.delete_transaction(current_data_frame)
+                print("")
 
             case AppFeature.ANALYZE_SPENDING_BY_CATEGORY:
                 data_analysis.analyze_spending_by_category(current_data_frame)

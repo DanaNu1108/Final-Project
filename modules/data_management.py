@@ -1,9 +1,10 @@
 import pandas as pd
+from datetime import datetime
 from constants import common_error_type_to_error_message
 
 
 def view_all_transactions(df: pd.DataFrame) -> None:
-
+    # A csv file is not imported
     if df is None:
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
@@ -13,10 +14,12 @@ def view_all_transactions(df: pd.DataFrame) -> None:
 
     return
 
-#2. View Transactions by Date Range
-from datetime import datetime
-
 def view_transactions_by_date(df):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
+    
     transactions_days = df
     transactions_days['Date'] = pd.to_datetime(transactions_days['Date'])
 
@@ -40,6 +43,11 @@ def view_transactions_by_date(df):
 
 # add_a_transaction
 def add_transaction(df):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
+    
     add_transactions = df
     add_transactions['Date'] = pd.to_datetime(add_transactions['Date'])
     # Prompt for transaction details
@@ -58,15 +66,19 @@ def add_transaction(df):
         transactions = pd.concat([add_transaction, new_transaction])
 
         print("Transaction added successfully!")
+        
+        return transactions
     except ValueError:
         print("Error: Invalid date or amount format. Please try again.")
 
 
-
-print(add_transaction)
-
 # edit_a_transaction
 def edit_transaction(df):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
+    
     edit_transactions = df
     edit_transactions['Date'] = pd.to_datetime(edit_transactions['Date'])
     try:
@@ -101,14 +113,19 @@ def edit_transaction(df):
             edit_transactions.at[index, 'Amount'] = float(new_amount)
 
         print("Transaction updated successfully!")
+        
+        return edit_transactions
     except ValueError:
         print("Error: Invalid input. Please enter a valid index and data format.")
 
 
-print(edit_transaction)
-
 # delete_a_transaction
 def delete_transaction(df):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
+    
     delete_transactions = df
     delete_transactions['Date'] = pd.to_datetime(delete_transactions['Date'])
     try:
@@ -124,10 +141,10 @@ def delete_transaction(df):
         transactions = delete_transactions.drop(index).reset_index(drop=True)
 
         print("Transaction deleted successfully!")
+        
+        return transactions
     except ValueError:
         print("Error: Invalid input. Please enter a valid index.")
 
 
-
-print(delete_transaction)
 
