@@ -47,29 +47,29 @@ def add_transaction(df):
     if df is None:
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
-    
-    add_transactions = df
-    add_transactions['Date'] = pd.to_datetime(add_transactions['Date'])
-    # Prompt for transaction details
+        
+    def add_transaction(df):
+    df['Date'] = pd.to_datetime(df['Date'])
     date_str = input("Enter the date (YYYY-MM-DD): ")
     category = input("Enter the category (e.g., Food, Rent): ")
     description = input("Enter a description: ")
     amount = input("Enter the amount: ")
 
     try:
-        # Convert date and amount to appropriate data types
         date = pd.to_datetime(date_str).date()
         amount = float(amount)
+        new_transaction = pd.DataFrame([[date, category, description, amount]], 
+                                       columns=["Date", "Category", "Description", "Amount"])
 
-        # Create a new transaction row
-        new_transaction = pd.DataFrame([[date, category, description, amount]])
-        transactions = pd.concat([add_transaction, new_transaction])
+        
+        updated_transactions = pd.concat([df, new_transaction], ignore_index=True)
 
         print("Transaction added successfully!")
-        
-        return transactions
+        return updated_transactions
+
     except ValueError:
         print("Error: Invalid date or amount format. Please try again.")
+
 
 
 # edit_a_transaction
