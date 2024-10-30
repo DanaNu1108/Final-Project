@@ -49,7 +49,6 @@ def add_transaction(df):
         return
     
     add_transactions = df
-    add_transactions['Date'] = pd.to_datetime(add_transactions['Date'])
     # Prompt for transaction details
     date_str = input("Enter the date (YYYY-MM-DD): ")
     category = input("Enter the category (e.g., Food, Rent): ")
@@ -80,7 +79,6 @@ def edit_transaction(df):
         return
     
     edit_transactions = df
-    edit_transactions['Date'] = pd.to_datetime(edit_transactions['Date'])
     try:
         index = int(input("Enter the index of the transaction to edit: "))
 
