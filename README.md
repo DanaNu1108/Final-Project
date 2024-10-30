@@ -91,7 +91,6 @@ Enter the file number: 0
 ...
 ```
 
-
 #### View All Transactions
 ```
 ...
@@ -107,6 +106,124 @@ Choose an option (0 - 11): 1
 5   2024-10-05       Food          Breakfast    15.00  Expense
 ...
 ```
+
+#### View Transactions by Date Range
+```
+...
+11. Exit
+Choose an option (0 - 11): 2
+
+Enter the start date (YYYY-MM-DD): 2024-10-02
+Enter the end date (YYYY-MM-DD): 2024-10-04
+--- Transactions from 2024-10-02 to 2024-10-04 ---
+      Date  Category      Description  Amount    Type
+2024-10-02      Rent     Monthly Rent 1200.00 Expense
+2024-10-02 Utilities Electricity Bill   60.00 Expense
+2024-10-03      Food           Dinner   30.00 Expense
+2024-10-04 Transport       Bus Ticket    2.75 Expense
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+1. View All Transactions
+...
+```
+
+#### Add a Transaction
+
+#### Edit a Transaction
+```
+...
+11. Exit
+Choose an option (0 - 11): 4
+
+Enter the index of the transaction to edit: 0
+Current Transaction Details:
+Date: 2024-10-01 00:00:00
+Category: Food
+Description: Grocery
+Amount: 50.75
+Enter new date (YYYY-MM-DD) or press Enter to keep current: 2024-10-31
+Enter new category or press Enter to keep current: Cloth
+Enter new description or press Enter to keep current: dummy
+Enter new amount or press Enter to keep current: 100
+Transaction updated successfully!
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+1. View All Transactions
+...
+```
+
+#### Delete a Transaction
+```
+...
+11. Exit
+Choose an option (0 - 11): 5
+
+Enter the index of the transaction to delete: 0
+Transaction deleted successfully!
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+1. View All Transactions
+...
+```
+
+#### Analyze Spending by Category
+```
+...
+11. Exit
+Choose an option (0 - 11): 6
+
+ -> SPENDING BY CATEGORY  
+| Category   |   Total Spending |
+|:-----------|-----------------:|
+| Food       |           150    |
+| Rent       |          2400    |
+| Transport  |            27.75 |
+| Utilities  |           100    |
+| Total      |          2677.75 |
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+1. View All Transactions
+...
+```
+
+#### Calculate Average Monthly Spending
+```
+...
+11. Exit
+Choose an option (0 - 11): 7
+
+ -> AVERAGE MONTHLY SPENDING  
+| Month         |   Expense |   Income |
+|:--------------|----------:|---------:|
+| (2024, 'Oct') |   267.775 |      900 |
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+1. View All Transactions
+...
+```
+
+#### Show Top Spending Category
+```
+...
+11. Exit
+Choose an option (0 - 11): 8
+
+ - TOP SPENDING CATEGORY - 
+| Category   |   Amount |
+|:-----------|---------:|
+| Rent       |     2400 |
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+1. View All Transactions
+...
+```
+#### Visualize Monthly Spending Trend
 
 #### Save Transactions to CSV
 ```
@@ -127,18 +244,7 @@ Transactions saved to 'save_test.csv' successfully!
 
 #### Exit
 ```
-=== Personal Finance Tracker ===
-0. Import a CSV File
-1. View All Transactions
-2. View Transactions by Date Range
-3. Add a Transaction
-4. Edit a Transaction
-5. Delete a Transaction
-6. Analyze Spending by Category
-7. Calculate Average Monthly Spending
-8. Show Top Spending Category
-9. Visualize Monthly Spending Trend
-10. Save Transactions to CSV
+...
 11. Exit
 Choose an option (0 - 11): 11
 
