@@ -1,14 +1,16 @@
 import pandas as pd
 import calendar
 from tabulate import tabulate
-
-
-file_path = "../csv_files/sampledata.csv"
-df = pd.read_csv(file_path)
+from constants import common_error_type_to_error_message
 
 
 # analyze_spending_by_category
-def analyze_spending_by_category():
+def analyze_spending_by_category(df:pd.DataFrame):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
+    
     df_category = df.loc[:, ["Category", "Amount", "Type"]]
     type_expense = df_category[df_category["Type"].isin(["Expense"])]
     spending_by_category = type_expense.groupby("Category")["Amount"].agg(Total_Spending = 'sum')
@@ -24,7 +26,11 @@ def analyze_spending_by_category():
 
 
 # calculate_average_monthly_spending
-def calculate_average_monthly_spending():
+def calculate_average_monthly_spending(df:pd.DataFrame):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
 
     df_date = df.loc[:, ["Date", "Amount", "Type"]]
     df_date["Date"] = pd.to_datetime(df_date["Date"])
@@ -40,8 +46,12 @@ def calculate_average_monthly_spending():
 
 
 # show_top_spending_category
-def show_top_spending_category():
-
+def show_top_spending_category(df:pd.DataFrame):
+    # A csv file is not imported
+    if df is None:
+        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
+        return
+    
     top_spending = df.groupby(["Category","Type"])["Amount"].sum().reset_index()
     top_spending = top_spending[top_spending.Type != "Income"]
     top_spending = top_spending.sort_values(by="Amount", ascending=False).set_index("Category")
@@ -50,7 +60,3 @@ def show_top_spending_category():
     print("\033[36m - TOP SPENDING CATEGORY - \033[0m")
     print(tabulate(top_spending[0:1], headers= ['Category', 'Amount'], tablefmt='pipe'))
 
-
-print(analyze_spending_by_category())
-print(calculate_average_monthly_spending())
-print(show_top_spending_category())

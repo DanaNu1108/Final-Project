@@ -1,6 +1,11 @@
 import pandas as pd
+
+# modules
 import modules.data_management as data_management
 import modules.file_transfer_management as file_transfer_management
+import modules.data_analysis as data_analysis
+
+# constants
 from constants import common_error_type_to_error_message
 from constants import AppFeature
 
@@ -38,13 +43,16 @@ def main():
                 print("not implemented yet")
 
             case AppFeature.ANALYZE_SPENDING_BY_CATEGORY:
-                print("not implemented yet")
+                data_analysis.analyze_spending_by_category(current_data_frame)
+                print("")
 
             case AppFeature.CALCULATE_AVERAGE_MONTHLY_SPENDING:
-                print("not implemented yet")
-
+                data_analysis.calculate_average_monthly_spending(current_data_frame)
+                print("")
+                
             case AppFeature.SHOW_TOP_SPENDING_CATEGORY:
-                print("not implemented yet")
+                data_analysis.show_top_spending_category(current_data_frame)
+                print("")
 
             case AppFeature.VISUALIZE_MONTHLY_SPENDING_TREND:
                 print("not implemented yet")
