@@ -56,19 +56,20 @@ def add_transaction(df):
     amount = input("Enter the amount: ")
 
     try:
-        # Convert date and amount to appropriate data types
         date = pd.to_datetime(date_str).date()
         amount = float(amount)
+        new_transaction = pd.DataFrame([[date, category, description, amount]], 
+                                       columns=["Date", "Category", "Description", "Amount"])
 
-        # Create a new transaction row
-        new_transaction = pd.DataFrame([[date, category, description, amount]])
-        transactions = pd.concat([add_transaction, new_transaction])
+        
+        updated_transactions = pd.concat([df, new_transaction], ignore_index=True)
 
         print("Transaction added successfully!")
-        
-        return transactions
+        return updated_transactions
+
     except ValueError:
         print("Error: Invalid date or amount format. Please try again.")
+
 
 
 # edit_a_transaction
@@ -85,7 +86,7 @@ def edit_transaction(df):
         # Check if the index is valid
         if index not in edit_transactions.index:
             print("Invalid index.")
-            return
+            return df
 
         # Display current transaction details
         print("Current Transaction Details:")
@@ -133,7 +134,7 @@ def delete_transaction(df):
         # Check if the index is valid
         if index not in delete_transactions.index:
             print("Invalid index.")
-            return
+            return df
 
 
         transactions = delete_transactions.drop(index).reset_index(drop=True)
@@ -143,6 +144,3 @@ def delete_transaction(df):
         return transactions
     except ValueError:
         print("Error: Invalid input. Please enter a valid index.")
-
-
-
