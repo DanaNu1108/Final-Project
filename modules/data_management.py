@@ -39,6 +39,29 @@ def view_transactions_by_date(df):
         
 
 # add_a_transaction
+def add_transaction(df):
+    transaction = df
+    transaction['Date'] = pd.to_datetime(transaction['Date'])
+    date_str = input("Enter the date (YYYY-MM-DD): ")
+    category = input("Enter the category (e.g., Food, Rent): ")
+    description = input("Enter a description: ")
+    amount = input("Enter the amount: ")
+
+    try:
+        # Convert date and amount to appropriate data types
+        date = pd.to_datetime(date_str).date()
+        amount = float(amount)
+
+        # Create a new transaction row
+        new_transaction = pd.DataFrame([[date, category, description, amount]])
+
+        # Append to the DataFrame
+        global transactionist
+        transactions = pd.concat([transaction, new_transaction], ignore_index=True)
+
+        print("Transaction added successfully!")
+    except ValueError:
+        print("Error: Invalid date or amount format. Please try again.")
 
 # edit_a_transaction
 
