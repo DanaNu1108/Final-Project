@@ -67,17 +67,19 @@ Imports and exports a csv file
 7. Calculate Average Monthly Spending
 8. Show Top Spending Category
 9. Visualize Monthly Spending Trend
-10. Save Transactions to CSV
-11. Exit
-Choose an option (0 - 11): 
+10. Visualize Spending By Category
+11. Visualize Percentage Distribution
+12. Save Transactions to CSV
+13. Exit
+Choose an option (0 - 13):
 ```
 
 #### Import a CSV File
 *Note: It's necessary to import a csv file before using any other features except for "Exit".*
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 0
+13. Exit
+Choose an option (0 - 13): 0
 
 Select the file number to import.
 0. sampledata.csv
@@ -94,8 +96,8 @@ Enter the file number: 0
 #### View All Transactions
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 1
+13. Exit
+Choose an option (0 - 13): 1
 --- All Transactions ---
           Date   Category        Description   Amount     Type
 0   2024-10-01       Food            Grocery    50.75  Expense
@@ -110,8 +112,8 @@ Choose an option (0 - 11): 1
 #### View Transactions by Date Range
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 2
+13. Exit
+Choose an option (0 - 13): 2
 
 Enter the start date (YYYY-MM-DD): 2024-10-02
 Enter the end date (YYYY-MM-DD): 2024-10-04
@@ -133,8 +135,8 @@ Enter the end date (YYYY-MM-DD): 2024-10-04
 #### Edit a Transaction
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 4
+13. Exit
+Choose an option (0 - 13): 4
 
 Enter the index of the transaction to edit: 0
 Current Transaction Details:
@@ -157,8 +159,8 @@ Transaction updated successfully!
 #### Delete a Transaction
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 5
+13. Exit
+Choose an option (0 - 13): 5
 
 Enter the index of the transaction to delete: 0
 Transaction deleted successfully!
@@ -172,8 +174,8 @@ Transaction deleted successfully!
 #### Analyze Spending by Category
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 6
+13. Exit
+Choose an option (0 - 13): 6
 
  -> SPENDING BY CATEGORY  
 | Category   |   Total Spending |
@@ -193,8 +195,8 @@ Choose an option (0 - 11): 6
 #### Calculate Average Monthly Spending
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 7
+13. Exit
+Choose an option (0 - 13): 7
 
  -> AVERAGE MONTHLY SPENDING  
 | Month         |   Expense |   Income |
@@ -210,8 +212,8 @@ Choose an option (0 - 11): 7
 #### Show Top Spending Category
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 8
+13. Exit
+Choose an option (0 - 13): 8
 
  - TOP SPENDING CATEGORY - 
 | Category   |   Amount |
@@ -228,8 +230,8 @@ Choose an option (0 - 11): 8
 #### Save Transactions to CSV
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 10
+13. Exit
+Choose an option (0 - 13): 12
 
 Enter file name to save (e.g., 'transactions.csv'): save_test.csv
 
@@ -245,8 +247,8 @@ Transactions saved to 'save_test.csv' successfully!
 #### Exit
 ```
 ...
-11. Exit
-Choose an option (0 - 11): 11
+13. Exit
+Choose an option (0 - 13): 13
 
 Exiting the Personal Finance Tracker. Goodbye!
 ```
