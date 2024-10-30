@@ -17,7 +17,7 @@ def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
         return df
 
     # Print all file names
-    print("Select the file number to import.")
+    print("Select file number to import.")
     for i in range(len(file_paths)):
         file_path = file_paths[i]
         file_name = file_path[file_path.rfind("/") + 1 :]

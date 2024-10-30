@@ -13,10 +13,20 @@ from constants import AppFeature
 
 def main():
     # Initialize data frame
-    current_data_frame: pd.DataFrame = None
+    current_data_frame: pd.DataFrame = pd.DataFrame()
 
     while True:
+        print("=== Personal Finance Tracker ===")
+        
+        # Let the user select a csv file if it's not imported yet
+        if current_data_frame.empty:
+            current_data_frame = file_transfer_management.import_a_csv_file(current_data_frame)
+            print("")
+            continue
+        
+        # Display all features
         display_menu()
+        
         user_input = validated_user_input()
         selected_feature = AppFeature.get_by_code(user_input)
 
@@ -81,8 +91,6 @@ def main():
 
 
 def display_menu():
-    print("=== Personal Finance Tracker ===")
-
     for feature in AppFeature.members_as_list():
         print(f"{feature.code}. {feature.display_name}")
 
