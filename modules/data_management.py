@@ -86,7 +86,7 @@ def edit_transaction(df):
         # Check if the index is valid
         if index not in edit_transactions.index:
             print("Invalid index.")
-            return
+            return df
 
         # Display current transaction details
         print("Current Transaction Details:")
@@ -134,7 +134,7 @@ def delete_transaction(df):
         # Check if the index is valid
         if index not in delete_transactions.index:
             print("Invalid index.")
-            return
+            return df
 
 
         transactions = delete_transactions.drop(index).reset_index(drop=True)
