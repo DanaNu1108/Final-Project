@@ -23,8 +23,10 @@ class AppFeature(Enum):
     CALCULATE_AVERAGE_MONTHLY_SPENDING = ("7", "Calculate Average Monthly Spending")
     SHOW_TOP_SPENDING_CATEGORY = ("8", "Show Top Spending Category")
     VISUALIZE_MONTHLY_SPENDING_TREND = ("9", "Visualize Monthly Spending Trend")
-    SAVE_TRANSACTIONS_TO_CSV = ("10", "Save Transactions to CSV")
-    EXIT = ("11", "Exit")
+    VISUALIZE_SPENDING_BY_CATEGORY = ("10", "Visualize Spending By Category")
+    VISUALIZE_PERCENTAGE_DISTRIBUTION = ("11", "Visualize Percentage Distribution")
+    SAVE_TRANSACTIONS_TO_CSV = ("12", "Save Transactions to CSV")
+    EXIT = ("13", "Exit")
 
     def __init__(self, code, display_name):
         self.code = code
