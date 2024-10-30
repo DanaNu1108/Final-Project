@@ -104,7 +104,7 @@ def edit_transaction(df):
 
         # Update transaction if a new value is provided
         if new_date:
-            edit_transactions.at[index, 'Date'] = pd.to_datetime(new_date)
+            edit_transactions.at[index, 'Date'] = pd.to_datetime(new_date).date()
         if new_category:
             edit_transactions.at[index, 'Category'] = new_category
         if new_description:
