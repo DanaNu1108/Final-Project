@@ -33,8 +33,8 @@ def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
     except Exception as e:
         print("The exception: {}".format(e))
         print(common_error_type_to_error_message["ERROR_OCCURRED"])
-        # Replace the dataframe with None in order to encourage the user to import a proper file
-        df = None
+        # Replace the dataframe with empty in order to encourage the user to import a proper file
+        df = pd.DataFrame()
     else:
         file_name = selected_file_path[selected_file_path.rfind("/") + 1 :]
         print(f"'{file_name}' has been imported successfully.")
@@ -42,11 +42,7 @@ def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
         return df
 
 
-def save_transactions_to_csv(df: pd.DataFrame) -> None:
-
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
+def save_transactions_to_csv(df: pd.DataFrame):
 
     # Receive a user input
     input_file_name = validated_file_name()

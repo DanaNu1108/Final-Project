@@ -3,11 +3,7 @@ from datetime import datetime
 from constants import common_error_type_to_error_message
 
 
-def view_all_transactions(df: pd.DataFrame) -> None:
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
+def view_all_transactions(df: pd.DataFrame):
 
     print("--- All Transactions ---")
     print(df)
@@ -15,10 +11,6 @@ def view_all_transactions(df: pd.DataFrame) -> None:
     return
 
 def view_transactions_by_date(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     transactions_days = df
     transactions_days['Date'] = pd.to_datetime(transactions_days['Date'])
@@ -43,10 +35,6 @@ def view_transactions_by_date(df):
 
 # add_a_transaction
 def add_transaction(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     add_transactions = df
     # Prompt for transaction details
@@ -74,10 +62,6 @@ def add_transaction(df):
 
 # edit_a_transaction
 def edit_transaction(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     edit_transactions = df
     try:
@@ -120,10 +104,6 @@ def edit_transaction(df):
 
 # delete_a_transaction
 def delete_transaction(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     delete_transactions = df
     delete_transactions['Date'] = pd.to_datetime(delete_transactions['Date'])
