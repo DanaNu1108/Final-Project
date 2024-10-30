@@ -48,7 +48,7 @@ def add_transaction(df):
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
         
-    def add_transaction(df):
+    
     df['Date'] = pd.to_datetime(df['Date'])
     date_str = input("Enter the date (YYYY-MM-DD): ")
     category = input("Enter the category (e.g., Food, Rent): ")
