@@ -47,9 +47,9 @@ def add_transaction(df):
     if df is None:
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
-        
     
-    df['Date'] = pd.to_datetime(df['Date'])
+    add_transactions = df
+    # Prompt for transaction details
     date_str = input("Enter the date (YYYY-MM-DD): ")
     category = input("Enter the category (e.g., Food, Rent): ")
     description = input("Enter a description: ")
@@ -80,7 +80,6 @@ def edit_transaction(df):
         return
     
     edit_transactions = df
-    edit_transactions['Date'] = pd.to_datetime(edit_transactions['Date'])
     try:
         index = int(input("Enter the index of the transaction to edit: "))
 
