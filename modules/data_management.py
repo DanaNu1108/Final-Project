@@ -55,9 +55,6 @@ def add_transaction(df):
 
         # Create a new transaction row
         new_transaction = pd.DataFrame([[date, category, description, amount]])
-
-        # Append to the DataFrame
-        global transaction1
         transactions = pd.concat([add_transaction, new_transaction])
 
         print("Transaction added successfully!")
