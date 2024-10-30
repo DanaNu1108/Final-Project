@@ -1,6 +1,7 @@
 import pandas as pd
 import modules.data_management as data_management
 import modules.file_transfer_management as file_transfer_management
+import modules.data_visualization as data_visualization
 from constants import common_error_type_to_error_message
 from constants import AppFeature
 
@@ -46,7 +47,16 @@ def main():
                 print("not implemented yet")
 
             case AppFeature.VISUALIZE_MONTHLY_SPENDING_TREND:
-                print("not implemented yet")
+                data_visualization.visualize_monthly_spending_trend(current_data_frame)
+                print("")
+
+            case AppFeature.VISUALIZE_SPENDING_BY_CATEGORY:
+                data_visualization.visualize_spending_by_category(current_data_frame)
+                print("")
+
+            case AppFeature.VISUALIZE_PERCENTAGE_DISTRIBUTION:
+                data_visualization.visualize_percentage_distribution(current_data_frame)
+                print("")
 
             case AppFeature.SAVE_TRANSACTIONS_TO_CSV:
                 file_transfer_management.save_transactions_to_csv(current_data_frame)
