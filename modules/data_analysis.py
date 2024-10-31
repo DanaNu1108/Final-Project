@@ -1,15 +1,11 @@
 import pandas as pd
 import calendar
 from tabulate import tabulate
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 
 
 # analyze_spending_by_category
 def analyze_spending_by_category(df:pd.DataFrame):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     df_category = df.loc[:, ["Category", "Amount", "Type"]]
     type_expense = df_category[df_category["Type"].isin(["Expense"])]
@@ -27,10 +23,6 @@ def analyze_spending_by_category(df:pd.DataFrame):
 
 # calculate_average_monthly_spending
 def calculate_average_monthly_spending(df:pd.DataFrame):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
 
     df_date = df.loc[:, ["Date", "Amount", "Type"]]
     df_date["Date"] = pd.to_datetime(df_date["Date"])
@@ -47,10 +39,6 @@ def calculate_average_monthly_spending(df:pd.DataFrame):
 
 # show_top_spending_category
 def show_top_spending_category(df:pd.DataFrame):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     top_spending = df.groupby(["Category","Type"])["Amount"].sum().reset_index()
     top_spending = top_spending[top_spending.Type != "Income"]
