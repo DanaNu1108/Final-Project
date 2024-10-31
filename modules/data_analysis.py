@@ -26,11 +26,12 @@ def calculate_average_monthly_spending(df:pd.DataFrame):
 
     df_date = df.loc[:, ["Date", "Amount", "Type"]]
     df_date["Date"] = pd.to_datetime(df_date["Date"])
+    df_date = df_date.sort_values(by="Date", ascending=True)
     df_date["Month"] = df_date["Date"].dt.month.apply(lambda x: calendar.month_abbr[x])
     df_date["Year"] = df_date["Date"].dt.year
 
     df_date_new_arrange = df_date.pivot_table(index=['Year', 'Month'], columns='Type',
-                         values='Amount', aggfunc='mean')
+                         values='Amount', aggfunc='mean', sort=False)
 
     print("\033[36m -> AVERAGE MONTHLY SPENDING  \033[0m")
     print(tabulate(df_date_new_arrange, headers=['Month', 'Expense', 'Income'], tablefmt='pipe'))

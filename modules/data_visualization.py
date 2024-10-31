@@ -19,7 +19,7 @@ def visualize_monthly_spending_trend(df: pd.DataFrame):
 
 
     df_date_new_arrange = df_date.pivot_table(index=['Year', 'Month'], columns='Type',
-                             values='Amount', aggfunc='sum')
+                             values='Amount', aggfunc='sum', sort=False)
 
     df_date_new_arrange.plot(kind='line', color=['red','green'])
     plt.xlabel("Month")
