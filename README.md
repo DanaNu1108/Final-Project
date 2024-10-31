@@ -53,9 +53,18 @@ Imports and exports a csv file
 - Save Transactions to CSV
 
 ## How it works
-#### Run main.py
-
+#### Start the program (Run main.py)
+*Note: First of all, It's necessary to import a csv file before using any feature.*
 ```
+=== Personal Finance Tracker ===
+Select file number to import.
+0. sampledata.csv
+Enter the file number: 
+```
+*After importing a file, the user can see all of the features*
+```
+'sampledata.csv' has been imported successfully.
+
 === Personal Finance Tracker ===
 0. Import a CSV File
 1. View All Transactions
@@ -75,13 +84,13 @@ Choose an option (0 - 13):
 ```
 
 #### Import a CSV File
-*Note: It's necessary to import a csv file before using any other features except for "Exit".*
+*The user can select a file existing in the "csv_files" directory.*
 ```
 ...
 13. Exit
 Choose an option (0 - 13): 0
 
-Select the file number to import.
+Select file number to import.
 0. sampledata.csv
 Enter the file number: 0
 
@@ -131,6 +140,22 @@ Enter the end date (YYYY-MM-DD): 2024-10-04
 ```
 
 #### Add a Transaction
+```
+...
+13. Exit
+Choose an option (0 - 13): 3
+
+Enter the date (YYYY-MM-DD): 2024-10-31
+Enter the category (e.g., Food, Rent): 2024-10-31
+Enter a description: dummy
+Enter the amount: 2000
+Enter transaction type Expense(1) or Income(2): 1
+Transaction added successfully!
+
+=== Personal Finance Tracker ===
+0. Import a CSV File
+...
+```
 
 #### Edit a Transaction
 ```
@@ -140,14 +165,14 @@ Choose an option (0 - 13): 4
 
 Enter the index of the transaction to edit: 0
 Current Transaction Details:
-Date: 2024-10-01 00:00:00
+Date: 2024-10-01
 Category: Food
 Description: Grocery
 Amount: 50.75
-Enter new date (YYYY-MM-DD) or press Enter to keep current: 2024-10-31
-Enter new category or press Enter to keep current: Cloth
-Enter new description or press Enter to keep current: dummy
-Enter new amount or press Enter to keep current: 100
+Enter new date (YYYY-MM-DD) or press Enter to keep current: 2024-10-02
+Enter new category or press Enter to keep current: 
+Enter new description or press Enter to keep current: 
+Enter new amount or press Enter to keep current: 60.50
 Transaction updated successfully!
 
 === Personal Finance Tracker ===
@@ -226,6 +251,13 @@ Choose an option (0 - 13): 8
 ...
 ```
 #### Visualize Monthly Spending Trend
+*Shows a line chart*
+
+#### Visualize Spending By Category
+*Shows a bar chart*
+
+#### Visualize Percentage Distribution
+*Shows a pie chart*
 
 #### Save Transactions to CSV
 ```
