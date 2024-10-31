@@ -79,8 +79,12 @@ def add_transaction(df):
 
 # edit_a_transaction
 def edit_transaction(df):
-    
+
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values(by="Date", ascending=True)
+    df = df.reset_index(drop=True)
     edit_transactions = df
+
     try:
         index = int(input("Enter the index of the transaction to edit: "))
 
