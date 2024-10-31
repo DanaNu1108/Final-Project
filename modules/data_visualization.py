@@ -8,11 +8,15 @@ import numpy as np
 # Monthly Spending Trend: Visualize spending trends over time using a line chart.
 def visualize_monthly_spending_trend(df: pd.DataFrame):
 
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values(by="Date", ascending=True)
+    df = df.reset_index(drop=True)
+
     df_date = df.loc[:, ["Date", "Amount", "Type"]]
-    df_date["Date"] = pd.to_datetime(df_date["Date"])
-    df_date = df_date.sort_values(by="Date", ascending=True)
     df_date["Month"] = df_date["Date"].dt.month.apply(lambda x: calendar.month_abbr[x])
     df_date["Year"] = df_date["Date"].dt.year
+
+
 
     df_date_new_arrange = df_date.pivot_table(index=['Year', 'Month'], columns='Type',
                              values='Amount', aggfunc='sum')
