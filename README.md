@@ -46,6 +46,8 @@ Includes spending analysis by category, average monthly spending, and identifyin
 #### Data Visualization(data_visualization.py)
 Creates line, bar, and pie charts to visualize spending trends and distribution.
 - Visualize Monthly Spending Trend
+- Visualize Spending By Category
+- Visualize Percentage Distribution
 
 #### File Transfer Management(file_transfer_management.py)
 Imports and exports a csv file
