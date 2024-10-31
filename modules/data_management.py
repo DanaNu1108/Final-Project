@@ -9,6 +9,10 @@ def view_all_transactions(df: pd.DataFrame) -> None:
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
 
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values(by="Date", ascending=True)
+    df = df.reset_index(drop=True)
+
     print("--- All Transactions ---")
     print(df)
 
@@ -54,12 +58,22 @@ def add_transaction(df):
     category = input("Enter the category (e.g., Food, Rent): ")
     description = input("Enter a description: ")
     amount = input("Enter the amount: ")
+    type = input("Enter transaction type Expense(1) or Income(2): ")
 
     try:
         date = pd.to_datetime(date_str).date()
         amount = float(amount)
-        new_transaction = pd.DataFrame([[date, category, description, amount]], 
-                                       columns=["Date", "Category", "Description", "Amount"])
+        type = int(type)
+
+        if type == 1:
+            type = "Expense"
+        elif type == 2:
+            type = "Income"
+        else:
+            print("Not an option")
+
+        new_transaction = pd.DataFrame([[date, category, description, amount, type]],
+                                       columns=["Date", "Category", "Description", "Amount", "Type"])
 
         
         updated_transactions = pd.concat([df, new_transaction], ignore_index=True)
