@@ -52,6 +52,8 @@ def add_transaction(df):
         date = pd.to_datetime(date_str).date()
         amount = float(amount)
         type = int(type)
+        category = category.capitalize()
+        description = description.capitalize()
 
         if type == 1:
             type = "Expense"
@@ -98,16 +100,20 @@ def edit_transaction(df):
         new_category = input("Enter new category or press Enter to keep current: ")
         new_description = input("Enter new description or press Enter to keep current: ")
         new_amount = input("Enter new amount or press Enter to keep current: ")
+        new_type = input("Enter new type Expense or Income or press Enter to keep current: ")
 
         # Update transaction if a new value is provided
         if new_date:
             edit_transactions.at[index, 'Date'] = pd.to_datetime(new_date).date()
         if new_category:
-            edit_transactions.at[index, 'Category'] = new_category
+            edit_transactions.at[index, 'Category'] = new_category.capitalize()
         if new_description:
-            edit_transactions.at[index, 'Description'] = new_description
+            edit_transactions.at[index, 'Description'] = new_description.capitalize()
         if new_amount:
             edit_transactions.at[index, 'Amount'] = float(new_amount)
+        if new_type:
+            edit_transactions.at[index, 'Type'] = new_type.capitalize()
+
 
         print("Transaction updated successfully!")
         
@@ -118,9 +124,14 @@ def edit_transaction(df):
 
 # delete_a_transaction
 def delete_transaction(df):
+
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values(by="Date", ascending=True)
+    df = df.reset_index(drop=True)
     
     delete_transactions = df
     delete_transactions['Date'] = pd.to_datetime(delete_transactions['Date'])
+
     try:
         # Prompt for the index of the transaction to delete
         index = int(input("Enter the index of the transaction to delete: "))
