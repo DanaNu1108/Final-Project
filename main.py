@@ -7,16 +7,26 @@ import modules.data_analysis as data_analysis
 import modules.data_visualization as data_visualization
 
 # constants
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 from constants import AppFeature
 
 
 def main():
     # Initialize data frame
-    current_data_frame: pd.DataFrame = None
+    current_data_frame: pd.DataFrame = pd.DataFrame()
 
     while True:
+        print("=== Personal Finance Tracker ===")
+        
+        # Let the user select a csv file if it's not imported yet
+        if current_data_frame.empty:
+            current_data_frame = file_transfer_management.import_a_csv_file(current_data_frame)
+            print("")
+            continue
+        
+        # Display all features
         display_menu()
+        
         user_input = validated_user_input()
         selected_feature = AppFeature.get_by_code(user_input)
 
@@ -75,14 +85,12 @@ def main():
                 print("")
 
             case AppFeature.EXIT:
-                print("Exiting the Personal Finance Tracker. Goodbye!")
+                print(common_message_type_to_message["EXIT"])
                 print("")
                 break
 
 
 def display_menu():
-    print("=== Personal Finance Tracker ===")
-
     for feature in AppFeature.members_as_list():
         print(f"{feature.code}. {feature.display_name}")
 
@@ -96,7 +104,7 @@ def validated_user_input():
 
         # Empty or null check
         if user_input == "" or user_input is None:
-            print(common_error_type_to_error_message["VALUE_IS_EMPTY_OR_NULL"])
+            print(common_message_type_to_message["VALUE_IS_EMPTY_OR_NULL"])
             continue
 
         # Check if the value is defined
