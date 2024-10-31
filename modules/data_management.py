@@ -1,13 +1,13 @@
 import pandas as pd
 from datetime import datetime
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 
 
-def view_all_transactions(df: pd.DataFrame) -> None:
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
+def view_all_transactions(df: pd.DataFrame):
+
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values(by="Date", ascending=True)
+    df = df.reset_index(drop=True)
 
     print("--- All Transactions ---")
     print(df)
@@ -15,10 +15,6 @@ def view_all_transactions(df: pd.DataFrame) -> None:
     return
 
 def view_transactions_by_date(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     transactions_days = df
     transactions_days['Date'] = pd.to_datetime(transactions_days['Date'])
@@ -43,10 +39,6 @@ def view_transactions_by_date(df):
 
 # add_a_transaction
 def add_transaction(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     add_transactions = df
     # Prompt for transaction details
@@ -54,12 +46,22 @@ def add_transaction(df):
     category = input("Enter the category (e.g., Food, Rent): ")
     description = input("Enter a description: ")
     amount = input("Enter the amount: ")
+    type = input("Enter transaction type Expense(1) or Income(2): ")
 
     try:
         date = pd.to_datetime(date_str).date()
         amount = float(amount)
-        new_transaction = pd.DataFrame([[date, category, description, amount]], 
-                                       columns=["Date", "Category", "Description", "Amount"])
+        type = int(type)
+
+        if type == 1:
+            type = "Expense"
+        elif type == 2:
+            type = "Income"
+        else:
+            print("Not an option")
+
+        new_transaction = pd.DataFrame([[date, category, description, amount, type]],
+                                       columns=["Date", "Category", "Description", "Amount", "Type"])
 
         
         updated_transactions = pd.concat([df, new_transaction], ignore_index=True)
@@ -74,10 +76,6 @@ def add_transaction(df):
 
 # edit_a_transaction
 def edit_transaction(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     edit_transactions = df
     try:
@@ -120,10 +118,6 @@ def edit_transaction(df):
 
 # delete_a_transaction
 def delete_transaction(df):
-    # A csv file is not imported
-    if df is None:
-        print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
-        return
     
     delete_transactions = df
     delete_transactions['Date'] = pd.to_datetime(delete_transactions['Date'])
