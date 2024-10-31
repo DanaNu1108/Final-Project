@@ -73,6 +73,7 @@ def add_transaction(df):
 
     except ValueError:
         print("Error: Invalid date or amount format. Please try again.")
+        return df
 
 
 
@@ -120,6 +121,7 @@ def edit_transaction(df):
         return edit_transactions
     except ValueError:
         print("Error: Invalid input. Please enter a valid index and data format.")
+        return df
 
 
 # delete_a_transaction
@@ -149,3 +151,4 @@ def delete_transaction(df):
         return transactions
     except ValueError:
         print("Error: Invalid input. Please enter a valid index.")
+        return df
