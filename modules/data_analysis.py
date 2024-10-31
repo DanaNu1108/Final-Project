@@ -1,7 +1,7 @@
 import pandas as pd
 import calendar
 from tabulate import tabulate
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 
 
 # analyze_spending_by_category

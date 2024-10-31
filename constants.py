@@ -1,12 +1,13 @@
 from enum import Enum
 
 # Define common error messages
-common_error_type_to_error_message = {
+common_message_type_to_message = {
     "VALUE_IS_EMPTY_OR_NULL": "Empty or Null value is not acceptable. Please try again.",
     "INVALID_FILE_EXTENSION": "The file extension is not .csv.",
     "ERROR_OCCURRED": "An error has occured. Please try again.",
-    "NO_FILE_EXISTS": "There is no file to import in the directory.",
+    "NO_FILE_EXISTS": "There is no file to import in the directory. Please add at least one file.",
     "INVALID_NUMBER": "It's not a valid number. Please try again.",
+    "EXIT": "Exiting the Personal Finance Tracker. Goodbye!",
 }
 
 

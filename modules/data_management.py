@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import datetime
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 
 
 def view_all_transactions(df: pd.DataFrame):

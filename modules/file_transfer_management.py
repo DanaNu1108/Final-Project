@@ -1,6 +1,8 @@
+import sys
+import os
 import glob
 import pandas as pd
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 
 targetDir = "./csv_files"
 
@@ -10,17 +12,17 @@ def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
     # Find all the csv file paths in the "csv_files" directory.
     file_paths = glob.glob(targetDir + "/*.csv")
 
-    # There is no file to import in the directory
+    # Finish the program when there is no file to import in the directory
     if len(file_paths) == 0:
-        print(common_error_type_to_error_message["NO_FILE_EXISTS"])
-        # Return inputed Dataframe as it is
-        return df
+        print(common_message_type_to_message["NO_FILE_EXISTS"])
+        print(common_message_type_to_message["EXIT"])
+        sys.exit(1)
 
     # Print all file names
     print("Select file number to import.")
     for i in range(len(file_paths)):
         file_path = file_paths[i]
-        file_name = file_path[file_path.rfind("/") + 1 :]
+        file_name = os.path.basename(file_path)
         print(f"{i}. {file_name}")
 
     # Receive a user input and specify the file based on it.
@@ -32,7 +34,7 @@ def import_a_csv_file(df: pd.DataFrame) -> pd.DataFrame:
         df = pd.read_csv(selected_file_path)
     except Exception as e:
         print("The exception: {}".format(e))
-        print(common_error_type_to_error_message["ERROR_OCCURRED"])
+        print(common_message_type_to_message["ERROR_OCCURRED"])
         # Replace the dataframe with empty in order to encourage the user to import a proper file
         df = pd.DataFrame()
     else:
@@ -51,7 +53,7 @@ def save_transactions_to_csv(df: pd.DataFrame):
         df.to_csv(path_or_buf=targetDir + "/" + input_file_name, index=False)
     except Exception as e:
         print("The exception: {}".format(e))
-        print(common_error_type_to_error_message["ERROR_OCCURRED"])
+        print(common_message_type_to_message["ERROR_OCCURRED"])
     else:
         print(f"Transactions saved to '{input_file_name}' successfully!")
     finally:
@@ -64,13 +66,13 @@ def validated_file_name() -> str:
 
         # Empty or null check
         if input_file_name == "" or input_file_name is None:
-            print(common_error_type_to_error_message["VALUE_IS_EMPTY_OR_NULL"])
+            print(common_message_type_to_message["VALUE_IS_EMPTY_OR_NULL"])
             continue
 
         if input_file_name[-4:] != ".csv":
-            print(common_error_type_to_error_message["INVALID_FILE_EXTENSION"])
+            print(common_message_type_to_message["INVALID_FILE_EXTENSION"])
             continue
-        
+
         print("")
         return input_file_name
 
@@ -80,7 +82,7 @@ def validated_file_number(file_paths: list) -> int:
         user_input = input("Enter the file number: ")
 
         if not user_input.isnumeric():
-            print(common_error_type_to_error_message["INVALID_NUMBER"])
+            print(common_message_type_to_message["INVALID_NUMBER"])
             continue
 
         user_input_number = int(user_input)
@@ -89,6 +91,6 @@ def validated_file_number(file_paths: list) -> int:
             available_numbers_str = f"0 - {len(file_paths)-1}"  # Ex. "0 - 11"
             print(f"Please enter a number {available_numbers_str}.")
             continue
-        
+
         print("")
         return user_input_number

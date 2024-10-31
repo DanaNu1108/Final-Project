@@ -7,7 +7,7 @@ import modules.data_analysis as data_analysis
 import modules.data_visualization as data_visualization
 
 # constants
-from constants import common_error_type_to_error_message
+from constants import common_message_type_to_message
 from constants import AppFeature
 
 
@@ -85,7 +85,7 @@ def main():
                 print("")
 
             case AppFeature.EXIT:
-                print("Exiting the Personal Finance Tracker. Goodbye!")
+                print(common_message_type_to_message["EXIT"])
                 print("")
                 break
 
@@ -104,7 +104,7 @@ def validated_user_input():
 
         # Empty or null check
         if user_input == "" or user_input is None:
-            print(common_error_type_to_error_message["VALUE_IS_EMPTY_OR_NULL"])
+            print(common_message_type_to_message["VALUE_IS_EMPTY_OR_NULL"])
             continue
 
         # Check if the value is defined
