@@ -144,9 +144,13 @@ def delete_transaction(df):
     if df is None:
         print(common_error_type_to_error_message["NO_FILE_IMPORTED"])
         return
-    
+
+    df["Date"] = pd.to_datetime(df["Date"])
+    df = df.sort_values(by="Date", ascending=True)
+    df = df.reset_index(drop=True)
     delete_transactions = df
     delete_transactions['Date'] = pd.to_datetime(delete_transactions['Date'])
+
     try:
         # Prompt for the index of the transaction to delete
         index = int(input("Enter the index of the transaction to delete: "))
